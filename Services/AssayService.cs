@@ -31,6 +31,7 @@ using NKD.Module.BusinessObjects;
 using NKD.Services;
 using EXPEDIT.Geology.ViewModels;
 
+
 namespace EXPEDIT.Geology.Services {
 
     [UsedImplicitly]

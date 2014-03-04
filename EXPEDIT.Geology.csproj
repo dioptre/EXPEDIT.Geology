@@ -347,6 +347,10 @@
     <Content Include="Views\User\ModelPivotChartPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\NKD.Extensions\NKD.Extensions.csproj">
+      <Project>{d52e5735-cd85-4a8d-a0c2-fb84ddbd222b}</Project>
+      <Name>NKD.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\NKD.Import\common\NKD.Import.csproj">
       <Project>{ea0ba44d-bfa4-4665-b080-eb12b2757c23}</Project>
       <Name>NKD.Import</Name>
