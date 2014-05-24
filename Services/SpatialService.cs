@@ -29,7 +29,6 @@ namespace EXPEDIT.Geology.Services {
     [UsedImplicitly]
     public class SpatialService : ISpatialService
     {
-        private readonly IOrchardServices _orchardServices;
         //private readonly IContentManager _contentManager;
         //private readonly IMessageManager _messageManager;
         //private readonly IScheduledTaskManager _taskManager;
@@ -42,7 +41,7 @@ namespace EXPEDIT.Geology.Services {
 
         public SpatialService(
             //IContentManager contentManager, 
-            IOrchardServices orchardServices, 
+            //IOrchardServices orchardServices, 
             //IMessageManager messageManager, 
             //IScheduledTaskManager taskManager, 
             //ICacheManager cache, 

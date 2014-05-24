@@ -119,9 +119,9 @@ namespace EXPEDIT.Geology.Services {
                     headerLine = sr.ReadLine();
                     firstDataLine = sr.ReadLine();
 
-                    bit.ParseDataLinesForOrigins(headerLine, firstDataLine, out _originX, out _originY, out _originZ);
+                    bit.ParseDataLinesForOrigins(headerLine, firstDataLine, ',', out _originX, out _originY, out _originZ);
                     // auto generate a format defintion based on Goldfields typical input column data
-                    idm = bit.AutoGenerateFormatDefinition(headerLine);
+                    idm = bit.AutoGenerateFormatDefinition(headerLine, ',');
                 }
                 sr.Close();
 
@@ -192,7 +192,7 @@ namespace EXPEDIT.Geology.Services {
                 opts.IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted;
                 using (new TransactionScope(TransactionScopeOption.Suppress, opts))
                 {
-                    mos = bit.PerformBMAppend(bmFileStream, m.BmGuid, m.Alias, m.ColumnNameToAdd, m.ColumnIndexToAdd, _users.ApplicationConnectionString);
+                    mos = bit.PerformBMAppend(bmFileStream, m.BmGuid, m.Alias, m.ColumnNameToAdd, m.ColumnIndexToAdd, _users.ApplicationConnectionString, ',');
                     mos.importTextFileName = m.BmFileName;
                     mos.targetModelName = m.Alias;
                 }
@@ -337,9 +337,9 @@ namespace EXPEDIT.Geology.Services {
                     {
                         headerLine = sr.ReadLine();
                         firstDataLine = sr.ReadLine();
-                        bit.ParseDataLinesForOrigins(headerLine, firstDataLine, out _originX, out _originY, out _originZ);
+                        bit.ParseDataLinesForOrigins(headerLine, firstDataLine, ',', out _originX, out _originY, out _originZ);
                         // auto generate a format defintion based on Goldfields typical input column data
-                        idm = bit.AutoGenerateFormatDefinition(headerLine);
+                        idm = bit.AutoGenerateFormatDefinition(headerLine, ',');
                     }
                     sr.Close();
 
