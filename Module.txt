@@ -9,5 +9,5 @@ Features:
     EXPEDIT.Geology:
         Description: Geology module demonstrating NakedEnterprise functionality.
 		Category: Business
-		Dependencies: NKD
+		Dependencies: NKD, Orchard.Media
 		Priority: -10
