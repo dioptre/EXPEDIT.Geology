@@ -17,7 +17,7 @@ namespace EXPEDIT.Geology.Services
     {
 
          [OperationContract]
-         Guid AssignResponsibility(Guid companyID, Guid contactID, Guid? tryWorkflowID = null, Guid referenceID = default(Guid), string referenceClass = null, string referenceTable = null);
+         Guid AssignMetadata(Guid companyID, Guid contactID, Guid? tryWorkflowID = null, Guid referenceID = default(Guid), string referenceClass = null, string referenceTable = null);
 
          string CurrentState
          {

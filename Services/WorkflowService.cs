@@ -58,20 +58,20 @@ namespace EXPEDIT.Geology.Services {
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
             SqlWorkflowInstanceStore store = new SqlWorkflowInstanceStore(_users.ApplicationConnectionString);
-            _wfApp = new WorkflowApplication(new NKD.Workflow.AssignResponsibility());
+            _wfApp = new WorkflowApplication(new NKD.Workflow.AssignMetadata());
             _wfApp.InstanceStore = store;
             
             XName wfHostTypeName = XName.Get("NKD", _users.ApplicationID.ToString());
             Dictionary<XName, object> wfScope = new Dictionary<XName, object> { { workflowHostTypePropertyName, wfHostTypeName } };
             _wfApp.AddInitialInstanceValues(wfScope);
             
-            _wfApp.Extensions.Add(new ResponsibilityExtension());
+            _wfApp.Extensions.Add(new MetadataExtension());
             List<XName> variantProperties = new List<XName>() 
             { 
-                ResponsibilityExtension.xNS.GetName("CompanyID"), 
-                ResponsibilityExtension.xNS.GetName("ContactID") 
+                MetadataExtension.xNS.GetName("CompanyID"), 
+                MetadataExtension.xNS.GetName("ContactID") 
             };
-            store.Promote("Responsibility", variantProperties, null);
+            store.Promote("Metadata", variantProperties, null);
 
             InstanceHandle handle = store.CreateInstanceHandle(null);
             var cmd = new CreateWorkflowOwnerCommand
@@ -121,7 +121,7 @@ namespace EXPEDIT.Geology.Services {
             }
         }
 
-        public Guid AssignResponsibility(Guid companyID, Guid contactID, Guid? tryWorkflowID = null, Guid referenceID = default(Guid), string referenceClass = null, string referenceTable = null)
+        public Guid AssignMetadata(Guid companyID, Guid contactID, Guid? tryWorkflowID = null, Guid referenceID = default(Guid), string referenceClass = null, string referenceTable = null)
         {
             using (new TransactionScope(TransactionScopeOption.Suppress))
             {
@@ -131,7 +131,7 @@ namespace EXPEDIT.Geology.Services {
                 //    _wfApp.LoadRunnableInstance(); // if any in SQL store
                 _wfApp.Run();
                 var b = _wfApp.GetBookmarks();
-                var r = _wfApp.ResumeBookmark("SubmitResponsibility", new Dictionary<string, object>() { 
+                var r = _wfApp.ResumeBookmark("SubmitMetadata", new Dictionary<string, object>() { 
                     { "CompanyID", Guid.NewGuid() }, 
                     { "ContactID", Guid.NewGuid() }
                 });

@@ -728,7 +728,7 @@ namespace EXPEDIT.Geology.Controllers {
 
         public ActionResult Workflow()
         {
-            WorkflowService.AssignResponsibility(Guid.NewGuid(), Guid.NewGuid());
+            WorkflowService.AssignMetadata(Guid.NewGuid(), Guid.NewGuid());
             return View("Workflow");
         }
     }
